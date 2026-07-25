@@ -1,0 +1,116 @@
+:root {
+  --bg: #1b1f2a;
+  --panel: #232838;
+  --line: #3a4156;
+  --x-color: #ff8a5c;
+  --o-color: #5cc8ff;
+  --ink: #eef1f8;
+  --muted: #8993ab;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Courier New', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+h1 {
+  font-size: 1.4rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+h1 span { color: var(--ink); }
+.status {
+  font-size: 1.1rem;
+  min-height: 1.4em;
+  letter-spacing: 0.05em;
+}
+.status .x { color: var(--x-color); }
+.status .o { color: var(--o-color); }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 92px);
+  grid-template-rows: repeat(3, 92px);
+  gap: 6px;
+  background: var(--line);
+  padding: 6px;
+  border-radius: 10px;
+}
+.cell {
+  background: var(--panel);
+  border: none;
+  border-radius: 6px;
+  font-size: 2.6rem;
+  font-weight: bold;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.cell:hover:not(:disabled) {
+  background: #2a3145;
+}
+.cell:disabled {
+  cursor: default;
+}
+.cell.x { color: var(--x-color); }
+.cell.o { color: var(--o-color); }
+.cell.win {
+  background: #33413a;
+  animation: pop 0.25s ease;
+}
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+button.reset {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+button.reset:hover {
+  color: var(--ink);
+  border-color: var(--muted);
+}
+
+.score {
+  display: flex;
+  gap: 24px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.score b.x { color: var(--x-color); }
+.score b.o { color: var(--o-color); }
